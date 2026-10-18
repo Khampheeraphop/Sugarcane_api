@@ -8,13 +8,13 @@ from PIL import Image
 from app.domain.diagnosis_policy import decide_screening
 from app.domain.knowledge import advice
 from app.services.images import assess_quality
-from ml.common import CLASSES, LABELS_TH
-from ml.inference import ModelRuntime
+from app.services.runtime import create_runtime
+from ml.labels import CLASSES, LABELS_TH
 
 
 class ScreeningService:
     def __init__(self, model_path: Path, policy_path: Path | None = None):
-        self.runtime = ModelRuntime(model_path, policy_path)
+        self.runtime = create_runtime(model_path, policy_path)
         self.meta = {
             **self.runtime.metadata,
             "version": self.runtime.metadata["version"] + "+support-v2",

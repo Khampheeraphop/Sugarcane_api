@@ -1,0 +1,6 @@
+{
+  "test_images": 260,
+  "decision_matches": 260,
+  "maximum_absolute_error": 1.3053417205810547e-05,
+  "note": "Runtime conversion parity only; does not add disease classes or establish field accuracy."
+}

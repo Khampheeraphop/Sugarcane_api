@@ -3,21 +3,13 @@
 import hashlib
 import json
 import threading
-from dataclasses import dataclass
 from pathlib import Path
 
 import torch
 from PIL import Image
 
+from app.domain.evidence import ModelScores as ModelScores
 from ml.common import CLASSES, backbone, transform
-
-
-@dataclass(frozen=True)
-class ModelScores:
-    probabilities: list[float]
-    gate_score: float
-    similarity: float
-    class_support: list[float] | None
 
 
 class ModelRuntime:

@@ -1,5 +1,5 @@
 from app.domain.diagnosis_policy import decide_screening
-from ml.inference import ModelScores
+from app.domain.evidence import ModelScores
 
 METADATA = {
     "classes": ["EyeSpot", "Healthy", "RedLeafSpot", "RedRot", "RingSpot"],

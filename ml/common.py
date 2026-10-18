@@ -3,16 +3,11 @@ from pathlib import Path
 import torch
 from torchvision.models import MobileNet_V3_Small_Weights, mobilenet_v3_small
 
+from ml.labels import CLASSES as CLASSES
+from ml.labels import LABELS_TH as LABELS_TH
+
 ROOT = Path(__file__).resolve().parents[1]
 MODELS = ROOT / "models"
-CLASSES = ["EyeSpot", "Healthy", "RedLeafSpot", "RedRot", "RingSpot"]
-LABELS_TH = [
-    "อาการคล้ายโรคใบจุดตา",
-    "ไม่พบอาการผิดปกติที่โมเดลรู้จัก",
-    "อาการคล้ายโรคใบจุดแดง",
-    "อาการคล้ายโรคเน่าแดง",
-    "อาการคล้ายโรคใบจุดวงแหวน",
-]
 
 
 def backbone(pretrained=False):

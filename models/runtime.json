@@ -1,0 +1,49 @@
+{
+  "source_model_sha256": "3e414a67954793fe5ece01c70621c07967c9199110739738c545591b08b8bd2e",
+  "metadata": {
+    "version": "mobilenet-v3-small-frozen-v1",
+    "classes": [
+      "EyeSpot",
+      "Healthy",
+      "RedLeafSpot",
+      "RedRot",
+      "RingSpot"
+    ],
+    "seed": 42,
+    "disease_temperature": 0.7424841311272325,
+    "gate_temperature": 0.5,
+    "gate_threshold": 0.5,
+    "similarity_threshold": 0.35,
+    "disease_threshold": 0.5,
+    "device": "cpu",
+    "training_seconds": 54.8,
+    "status": "experimental",
+    "weather_model_trained": false,
+    "limitations": [
+      "No independent Thai farm evaluation.",
+      "No plant/farm IDs; pHash grouping only.",
+      "Negatives are flowers and synthetic controls; grass, rice, maize, objects and unseen diseases are not validated.",
+      "Labels describe image patterns; not laboratory-confirmed diagnosis. Healthy means no recognized visible symptom.",
+      "Calibration sample is small; confidence is not a guarantee."
+    ]
+  },
+  "preprocessing": {
+    "resize_size": 256,
+    "crop_size": 224,
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "interpolation": "bilinear"
+  },
+  "files": {
+    "backbone.onnx": "ceb0a83553ab92627a3cb80b6ace7e94fd0fd2d9666b709a1a3b536052403c67",
+    "heads.npz": "b58497547d316e6a4f2852d00007e2dd3e61bd426bfce3849405051587f9af9d"
+  }
+}

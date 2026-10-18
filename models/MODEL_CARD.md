@@ -40,3 +40,7 @@ Accuracy รวมก่อนปฏิเสธ = **93/98 = 94.9%**; Macro-F1 =
 โหมดสำรวจแปลงใช้การเปรียบเทียบสี RGB/HSV กับพื้นที่อ้างอิงที่ผู้ใช้เลือก ไม่ใช้โมเดลนี้ ไม่ระบุโรค และไม่ใช่โมเดลที่เทรนจากภาพโดรน
 
 ดูหลักฐานรายภาพใน `test_predictions.json` รายละเอียดคะแนนใน `metrics.json` และที่มาของข้อมูล/สิทธิ์ใช้งานใน README.md กับ `provenance/sources.json`; per-image test predictions are generated locally and not committed
+
+## Deployment artifact
+
+ONNX backbone and NumPy heads are an export of the original model, not a retraining. All 260 held-out decisions match the PyTorch runtime, with maximum absolute score difference 0.0000131. See `runtime_parity.json`. The deployment preserves the same withheld results and unsupported disease classes.

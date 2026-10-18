@@ -1,0 +1,8 @@
+# Low-memory production runtime; no training libraries or automatic model downloads.
+fastapi==0.143.3
+uvicorn==0.54.0
+python-multipart==0.0.32
+pillow==12.3.0
+numpy==2.5.2
+httpx==0.28.1
+onnxruntime==1.31.0

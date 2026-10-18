@@ -22,7 +22,7 @@ python -m pip install -r requirements-dev.txt
 
 ### Prepare and train
 
-Datasets, private feedback, trained weights and feature caches are deliberately excluded from Git. Downloading requires network access and acceptance of the source dataset terms. Training also downloads ImageNet backbone weights on first use.
+Datasets, private feedback, PyTorch checkpoints and feature caches are deliberately excluded from Git. The compact ONNX inference artifacts are versioned for deployment. Downloading requires network access and acceptance of the source dataset terms. Training also downloads ImageNet backbone weights on first use.
 
 ```powershell
 python -m scripts.download_data
@@ -103,3 +103,24 @@ Tests that require local weights, datasets or private feedback skip when unavail
 See [provenance/sources.json](provenance/sources.json) for source URLs, citations and archive checksums. SugarcaneLD-BD: Arman et al., DOI 10.17632/n8mpzb7p4k.1; the Kaggle mirror states CC BY-SA 4.0 while the Mendeley record states CC BY 4.0. Follow the stricter mirror terms for that download. TensorFlow flower photographs retain their individual author attribution and CC BY 2.0 notices in the downloaded archive. ImageNet/MobileNet backbone provenance is provided by torchvision. Dataset licenses are not a blanket license for all code in this repository.
 
 Images uploaded for screening are processed in memory and not retained or automatically used for training. Weather coordinates are forwarded to Open-Meteo only on an explicit weather request. Supabase schema is a future extension; it has not been applied to an account.
+
+
+## Free hosted deployment
+
+The web runs on Cloudflare Workers and proxies API requests to a Render Free web service. `render.yaml` explicitly selects the free plan, one process and ONNX inference. No training runs on the host. Render sleeps idle free services; the first request can take longer. No database or paid hardware is required.
+
+Production dependencies are isolated in `requirements-serve.txt`. ONNX consumes the same frozen features and NumPy heads; the support policy is unchanged. Local parity validation matched all 260 held-out decisions; see `models/runtime_parity.json`. This proves runtime parity, not agricultural accuracy. The local Windows production smoke used about 95 MB RSS after inference; host usage can differ.
+
+To reproduce the deployment artifact after intentionally training a new model:
+
+```powershell
+python -m pip install onnx==1.23.2 onnxscript==0.7.2 onnxruntime==1.31.0
+python -m ml.export_onnx
+python -m scripts.check_runtime_parity
+```
+
+Commit `models/backbone.onnx`, `heads.npz`, `runtime.json`, `policy.json`, aggregate metrics and model-card changes together. The artifact includes trained weights and reference feature vectors, never source photographs. It is derived from the attributed sources in `provenance/sources.json`; retain that attribution with redistribution. Exporting does not teach new disease classes.
+
+Run production locally with `INFERENCE_BACKEND=onnx` and `REQUIRE_MODEL=1`, then use the normal uvicorn command. `/api/ready` returns 503 unless the model and policy are ready. `REQUIRE_MODEL=1` prevents an empty deployment from starting successfully.
+
+Render links to `main` and deploys after GitHub checks pass. The production CI job installs only serving dependencies, loads the checked-in artifacts and confirms PyTorch is not imported. Upload secrets only through provider secret storage, never through Git or the frontend. Set the same `INFERENCE_API_SECRET` on Render and the Cloudflare Worker.

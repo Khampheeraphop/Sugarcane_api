@@ -14,3 +14,17 @@ jobs:
       - run: python -m ruff check .
       - run: python -m ruff format --check .
       - run: python -m pytest -q
+
+  production:
+    runs-on: ubuntu-latest
+    env:
+      INFERENCE_BACKEND: onnx
+      REQUIRE_MODEL: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+      - run: python -m pip install -r requirements-serve.txt httpx
+      - run: python -m scripts.smoke_production

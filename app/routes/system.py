@@ -1,11 +1,12 @@
 import json
 
-from fastapi import APIRouter, Depends, Request
+from fastapi import APIRouter, Depends, HTTPException, Request
 
 from app.core.config import MODEL_DIRECTORY
 from app.dependencies import get_screening_service
+from app.domain.knowledge import advice
 from app.services.screening import ScreeningService
-from ml.common import CLASSES, LABELS_TH
+from ml.labels import CLASSES, LABELS_TH
 
 router = APIRouter(prefix="/api", tags=["System"])
 
@@ -37,3 +38,29 @@ def model_info(service: ScreeningService = Depends(get_screening_service)):
             for name, label in zip(CLASSES, LABELS_TH)
         ],
     }
+
+
+@router.get("/diseases")
+def disease_catalog():
+    return {
+        "classes": [
+            {
+                "id": name,
+                "label": label.replace("อาการคล้าย", ""),
+                "requires_confirmation": name == "RedRot",
+                "leaf_output_enabled": name != "RedRot",
+                "advice": advice(name),
+            }
+            for name, label in zip(CLASSES, LABELS_TH)
+        ],
+        "unsupported": ["โรคสนิม (Rust)", "อาการใบจาง/ใบลวก", "โรคใบด่าง (Mosaic)", "โรคอื่นนอกชุดฝึก"],
+        "notice": "รองรับเพียงกลุ่มอาการในชุดฝึก ไม่ยืนยันเชื้อหรือสาเหตุจริงของต้นที่ถ่ายภาพ",
+    }
+
+
+@router.get("/ready")
+def readiness(request: Request):
+    result = health(request)
+    if not result["ready"] or not result["support_policy_ready"]:
+        raise HTTPException(503, "Model and matching support policy are not ready")
+    return result

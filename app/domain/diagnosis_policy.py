@@ -3,6 +3,8 @@
 from dataclasses import dataclass
 from typing import Literal
 
+from app.domain.evidence import ModelScores
+
 DecisionStatus = Literal["unrecognized", "uncertain", "healthy", "suspected"]
 
 
@@ -13,7 +15,7 @@ class ScreeningDecision:
     class_id: str | None = None
 
 
-def decide_screening(scores, metadata: dict, policy: dict | None) -> ScreeningDecision:
+def decide_screening(scores: ModelScores, metadata: dict, policy: dict | None) -> ScreeningDecision:
     if (
         scores.gate_score < metadata["gate_threshold"]
         or scores.similarity < metadata["similarity_threshold"]

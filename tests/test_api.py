@@ -141,3 +141,16 @@ def test_trained_leaf_prediction_includes_advice_only_when_accepted():
                 assert data["advice"]["sources"] and data["advice"]["care"]
             else:
                 assert "advice" not in data and data["confidence"] is None
+
+
+def test_disease_catalog_explains_supported_and_withheld_classes():
+    with TestClient(app) as client:
+        response = client.get("/api/diseases")
+        assert response.status_code == 200
+        catalog = response.json()
+        assert len(catalog["classes"]) == 5
+        red_rot = next(item for item in catalog["classes"] if item["id"] == "RedRot")
+        assert red_rot["requires_confirmation"] and not red_rot["leaf_output_enabled"]
+        assert any("Rust" in item for item in catalog["unsupported"])
+        for item in catalog["classes"]:
+            assert item["advice"]["cause"] and item["advice"]["scope"]
