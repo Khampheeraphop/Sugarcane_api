@@ -1,0 +1,94 @@
+{
+  "raw_disease_accuracy": 0.9489795918367347,
+  "raw_disease_macro_f1": 0.9099269181522704,
+  "disease_report": {
+    "EyeSpot": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 12.0
+    },
+    "Healthy": {
+      "precision": 0.9696969696969697,
+      "recall": 1.0,
+      "f1-score": 0.9846153846153847,
+      "support": 32.0
+    },
+    "RedLeafSpot": {
+      "precision": 1.0,
+      "recall": 0.5714285714285714,
+      "f1-score": 0.7272727272727273,
+      "support": 7.0
+    },
+    "RedRot": {
+      "precision": 0.918918918918919,
+      "recall": 1.0,
+      "f1-score": 0.9577464788732394,
+      "support": 34.0
+    },
+    "RingSpot": {
+      "precision": 0.9166666666666666,
+      "recall": 0.8461538461538461,
+      "f1-score": 0.88,
+      "support": 13.0
+    },
+    "accuracy": 0.9489795918367347,
+    "macro avg": {
+      "precision": 0.961056511056511,
+      "recall": 0.8835164835164834,
+      "f1-score": 0.9099269181522704,
+      "support": 98.0
+    },
+    "weighted avg": {
+      "precision": 0.9509205402062545,
+      "recall": 0.9489795918367347,
+      "f1-score": 0.9449181804111382,
+      "support": 98.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      12,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      32,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      4,
+      1,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      34,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      2,
+      11
+    ]
+  ],
+  "test_sugarcane_count": 98,
+  "test_negative_count": 162,
+  "sugarcane_gate_recall": 1.0,
+  "negative_false_accept_rate": 0.0,
+  "negative_disease_output_rate": 0.0,
+  "disease_coverage": 0.9897959183673469,
+  "accepted_disease_count": 97,
+  "accepted_disease_accuracy": 0.9587628841400146
+}

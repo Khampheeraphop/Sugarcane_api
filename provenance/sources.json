@@ -1,0 +1,20 @@
+[
+  {
+    "name": "sugarcane",
+    "file": "sugarcane.zip",
+    "url": "https://www.kaggle.com/api/v1/datasets/download/shifatearman/sugarcaneld-bd-dataset?datasetVersionNumber=6",
+    "citation": "Arman et al. SugarcaneLD-BD, DOI:10.17632/n8mpzb7p4k.1",
+    "license": "CC BY-SA 4.0 (Kaggle mirror); Mendeley record states CC BY 4.0. Follow stricter mirror terms.",
+    "source": "https://www.kaggle.com/datasets/shifatearman/sugarcaneld-bd-dataset",
+    "sha256": "98fa860cce9653aef975913a5110297931e71692a758af71d58ed438f9cbc231"
+  },
+  {
+    "name": "flowers",
+    "file": "flower_photos.tgz",
+    "url": "https://storage.googleapis.com/download.tensorflow.org/example_images/flower_photos.tgz",
+    "citation": "TensorFlow flower_photos; individual image authors in LICENSE.txt in archive",
+    "license": "CC BY 2.0, retain per-image attribution in flower_photos/LICENSE.txt",
+    "source": "https://www.tensorflow.org/datasets/catalog/tf_flowers",
+    "sha256": "4c54ace7911aaffe13a365c34f650e71dd5bf1be0a58b464e5a7183e3e595d9c"
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "version": "mobilenet-v3-small-frozen-v1+support-v2",
+  "test_sugarcane_count": 98,
+  "test_negative_count": 162,
+  "accepted_disease_count": 56,
+  "disease_coverage": 0.5714285714285714,
+  "accepted_disease_accuracy": 0.9821428571428571,
+  "negative_disease_output_count": 0,
+  "status_counts": {
+    "sugarcane/suspected": 26,
+    "sugarcane/healthy": 30,
+    "sugarcane/uncertain": 42,
+    "negative/unrecognized": 154,
+    "negative/poor_quality": 8
+  },
+  "requires_confirmation": [
+    "RedRot"
+  ],
+  "note": "Application policy metrics, including quality checks and class support. Raw classifier metrics are separate. Test results never select cutoffs."
+}

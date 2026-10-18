@@ -1,0 +1,32 @@
+{
+  "seed": 42,
+  "counts": {
+    "train/EyeSpot": 45,
+    "val/EyeSpot": 11,
+    "calibration/EyeSpot": 7,
+    "test/EyeSpot": 12,
+    "train/Healthy": 127,
+    "val/Healthy": 32,
+    "calibration/Healthy": 22,
+    "test/Healthy": 32,
+    "train/RedLeafSpot": 25,
+    "val/RedLeafSpot": 7,
+    "calibration/RedLeafSpot": 4,
+    "test/RedLeafSpot": 7,
+    "train/RedRot": 134,
+    "val/RedRot": 34,
+    "calibration/RedRot": 22,
+    "test/RedRot": 34,
+    "train/RingSpot": 49,
+    "val/RingSpot": 13,
+    "calibration/RingSpot": 8,
+    "test/RingSpot": 13,
+    "train/not_sugarcane": 649,
+    "val/not_sugarcane": 162,
+    "calibration/not_sugarcane": 147,
+    "test/not_sugarcane": 162
+  },
+  "near_duplicate_groups": 1718,
+  "excluded_conflicting_images": 0,
+  "split_limitation": "pHash groups (distance <=4), not independent farms/plants. Metadata unavailable; field performance unknown."
+}
